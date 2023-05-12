@@ -118,7 +118,7 @@ class RecipeCard extends HTMLElement {
      *                        }
      */
     set data(data) {
-        // If nothing was passed in, return
+        // If nothing was passed in, return ${data.imgSrc}
         if (!data) return;
 
         // A6. TODO - Select the <article> we added to the Shadow DOM in the constructor
@@ -128,21 +128,18 @@ class RecipeCard extends HTMLElement {
         //           do not nest an <article> inside another <article>). You should use Template
         //           literals (tempalte strings) and element.innerHTML for this.
         article.innerHTML = `
-          ${data.imgSrc}
-          alt="Recipe Title">
+          <img src="${data.imgSrc}" alt="${data.imgAlt}">
           <p class="title">
-            <a href="https://link-to-article.com">Title</a>
+            <a href="${data.titleLnk}">${data.titleTxt}</a>
           </p>
-          <p class="organization">The Chef's Organization</p>
+          <p class="organization">${data.organization}</p>
           <div class="rating">
-            <span>5</span>
+            <span>${data.rating}</span>
             <img src="/assets/images/icons/5-star.svg" alt="5 stars">
-            <span>(500)</span>
+            <span>(${data.numRatings})</span>
           </div>
-          <time>50 min</time>
-          <p class="ingredients">
-            Comma, Separated, List, of, Ingredients
-          </p>
+          <time>${data.lengthTime}</time>
+          <p class="ingredients">${data.ingredients}</p>
         `;
     }
 }
